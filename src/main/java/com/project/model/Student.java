@@ -1,5 +1,6 @@
 package com.project.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,13 +8,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table
+@Table(name="Student")
 public class Student {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int studentId;
+	private int id;
+	@Column(name="studentId",unique=true)
+	private Long studentId;
+	@Column(name="studentName")
 	private String studentName;
+	@Column(name="department")
 	private String department;
+	@Column(name="contact",unique=true)
 	private Long contact;
 	
 	
@@ -22,8 +28,9 @@ public class Student {
 	}
 
 
-	public Student(int studentId, String studentName, String department, Long contact) {
+	public Student(int id, Long studentId, String studentName, String department, Long contact) {
 		super();
+		this.id = id;
 		this.studentId = studentId;
 		this.studentName = studentName;
 		this.department = department;
@@ -31,12 +38,22 @@ public class Student {
 	}
 
 
-	public int getStudentId() {
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public Long getStudentId() {
 		return studentId;
 	}
 
 
-	public void setStudentId(int studentId) {
+	public void setStudentId(Long studentId) {
 		this.studentId = studentId;
 	}
 
@@ -69,7 +86,7 @@ public class Student {
 	public void setContact(Long contact) {
 		this.contact = contact;
 	}
-	
-	
 
+
+	
 }
